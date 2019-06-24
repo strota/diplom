@@ -1,0 +1,199 @@
+<html>
+    <head>
+        <title>
+            VK
+        </title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.0/sigma.min.js"></script>
+        <style>
+            html { height:100%;}
+            body {height: 100%;}
+            #sigma-container { width:1000px; height:100%; background-color:#E1E1E1}
+        </style>
+    </head>
+    <body>
+        <% include header.ejs %>
+        <div id='sigma-container'></div>
+        <script>
+            var value_dict = {}
+            var date = { '43114430': { first_name: 'Tanya',
+                last_name: 'Stroeva',
+                common_friends: [ 174209548, 233737260, 261567185 ] },
+                '174209548': { first_name: 'Anastasia',
+                last_name: 'Usoltseva',
+                common_friends: [ 43114430, 233737260, 261567185 ] },
+                '233737260': { first_name: 'Natalya',
+                last_name: 'Stroeva',
+                common_friends: [ 43114430, 174209548, 261567185 ] },
+                '261567185': { first_name: 'Konstantin',
+                last_name: 'Usoltsev',
+                common_friends: [ 43114430, 174209548, 233737260 ] } 
+            };
+            var data = { '3257752': { first_name: 'Ivetta',
+                last_name: 'Semikhina',
+                common_friends: [ 50008728, 171238574, 305581108, 318283230 ] },
+                '7723862': { first_name: 'Dmitry',
+                last_name: 'Naumov',
+                common_friends: [ 50008728 ] },
+                '43114430': { first_name: 'Tanya',
+                last_name: 'Stroeva',
+                common_friends:
+                    [ 50008728,
+                    83493963,
+                    140101303,
+                    187665905,
+                    233737260,
+                    279689822,
+                    318283230,
+                    396328419,
+                    451215740 ] },
+                '48530725': { first_name: 'Nastya',
+                last_name: 'Marganova',
+                common_friends: [ 439407321 ] },
+                '50008728': { first_name: 'Svetlana',
+                last_name: 'Naumova',
+                common_friends:
+                    [ 3257752,
+                    7723862,
+                    43114430,
+                    140101303,
+                    187665905,
+                    233737260,
+                    265201764,
+                    279689822,
+                    305581108,
+                    318283230,
+                    396328419,
+                    451215740 ] },
+                '63530258': { first_name: 'Darya',
+                last_name: 'Kopaneva',
+                common_friends: [ 119238510, 147978450 ] },
+                '65603136': { first_name: 'Svetlana',
+                last_name: 'Shakhmatova',
+                common_friends: [ 145397022, 265201764 ] },
+                '83493963': { first_name: 'Evgenia',
+                last_name: 'Ponomareva',
+                common_friends: [ 43114430 ] },
+                '89360270': { first_name: 'Polina',
+                last_name: 'Antipova',
+                common_friends: [] },
+                '96689200': { first_name: 'Daniil',
+                last_name: 'Safin',
+                common_friends: [ 390726815 ] },
+                '119238510': { first_name: 'Danil',
+                last_name: 'Elnyakov',
+                common_friends: [] },
+                '140101303': { first_name: 'Darya',
+                last_name: 'Kiseleva',
+                common_friends: [] },
+                '145397022': { first_name: 'Maria',
+                last_name: 'Sopelnyak',
+                common_friends: [ 65603136 ] },
+                '147978450': { first_name: 'Andrey',
+                last_name: 'Schelkunov',
+                common_friends: [ 63530258, 119238510, 152462107, 158852271, 403752770 ] },
+                '152462107': { first_name: 'Dzhanibek',
+                last_name: 'Isilbaev',
+                common_friends: [ 119238510, 147978450, 158852271 ] },
+                '154609200': { first_name: 'Max',
+                last_name: 'Ilinykh',
+                common_friends: [] },
+                '155825314': { first_name: 'Valeria',
+                last_name: 'Morozova',
+                common_friends: [] },
+                '158852271': { first_name: 'Nikolay',
+                last_name: 'Spyaschev',
+                common_friends: [ 119238510, 147978450, 152462107, 403752770 ] },
+                '171238574': { first_name: 'Daniil',
+                last_name: 'Bakuev',
+                common_friends: [ 3257752, 305581108, 318283230 ] },
+                '171675560': { first_name: 'Sasha',
+                last_name: 'Rezinov',
+                common_friends: [ 318283230 ] },
+                '187665905': { first_name: 'Elvira',
+                last_name: 'Naumova',
+                common_friends: [ 43114430, 50008728, 233737260, 279689822, 396328419, 451215740 ] },
+                '233737260': { first_name: 'Natalya',
+                last_name: 'Stroeva',
+                common_friends: [ 43114430,
+                    50008728,
+                    140101303,
+                    187665905,
+                    279689822,
+                    396328419,
+                    451215740 ] },
+                '265201764': { first_name: 'Viktoria',
+                last_name: 'Lebedeva',
+                common_friends: [ 50008728, 65603136 ] },
+                '279689822': { first_name: 'Yury',
+                last_name: 'Stroev',
+                common_friends: [ 43114430, 50008728, 187665905, 233737260 ] },
+                '305581108': { first_name: 'Dmitry',
+                last_name: 'Semikhin',
+                common_friends: [ 3257752, 50008728, 171238574, 318283230 ] },
+                '318283230': { first_name: 'Kirill',
+                last_name: 'Semikhin',
+                common_friends: [ 3257752, 43114430, 50008728, 171238574, 171675560, 305581108 ] },
+                '390726815': { first_name: 'Katyusha',
+                last_name: 'Safina',
+                common_friends: [ 96689200 ] },
+                '396328419': { first_name: 'Valentina',
+                last_name: 'Novikova',
+                common_friends: [ 43114430, 50008728, 187665905, 233737260, 451215740 ] },
+                '403752770': { first_name: 'Rinat',
+                last_name: 'Kusyapkulov',
+                common_friends: [ 119238510, 147978450, 158852271 ] },
+                '439407321': { first_name: 'Nastya',
+                last_name: 'Arnold',
+                common_friends: [ 48530725 ] },
+                '451215740': { first_name: 'Alexander',
+                last_name: 'Stroev',
+                common_friends: [ 43114430, 50008728, 187665905, 233737260, 396328419 ] } }
+            var graph = {nodes: [], edges: []};
+            let e = 0;
+            Object.keys(data).forEach(function(key) {
+                let name = data[key].first_name + ' ' + data[key].last_name;
+                let value = {id: key, label: name, x: getRandom(0, 100), y: getRandom(0, 100), size: 1, color: '#008cc2'};
+                graph.nodes.push(value);
+                value_dict[key] = true;
+                data[key].common_friends.forEach(function(friend) {
+                    if (value_dict[friend] === undefined) {
+                        let one_edges = { id: "e" + e, source: key, target: friend, color: '#282c34', type:'line', size:0.5 }
+                        e += 1;
+                        graph.edges.push(one_edges);
+                    }
+                })
+
+            });
+            console.log(graph);
+            // Initialize sigma:
+            var s = new sigma(
+              {
+                  renderer: {
+                  container: document.getElementById('sigma-container'),
+                  type: 'canvas'
+              },
+                settings: {}
+              }
+            );
+
+            var new_graph = {
+                nodes: [
+                    { id: "n0", label: "A node", x: 0, y: 0, size: 3, color: '#008cc2' },
+                    { id: "n1", label: "Another node", x: 3, y: 1, size: 2, color: '#008cc2' },
+                    { id: "n2", label: "And a last one", x: 1, y: 3, size: 1, color: '#E57821' }
+                ],
+                edges: [
+                    { id: "e0", source: "n0", target: "n1", color: '#282c34', type:'line', size:0.5 },
+                    { id: "e1", source: "n1", target: "n2", color: '#282c34', type:'curve', size:1},
+                    { id: "e2", source: "n0", target: "n2", color: '#FF0000', type:'line', size:2}
+                ]
+            }
+            s.graph.read(graph)
+            s.refresh()
+          
+            function getRandom(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+        </script>
+    </body>
+</html>
